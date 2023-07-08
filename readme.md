@@ -1,0 +1,1 @@
+# Adicionado novas opções de rodar os comandos do SVN apartir de caminhos espelhos, versoes do mesmo repositorio. A alteração foi realizada apartir da extensão TortoisSVN para VSCode do fantasytyx
