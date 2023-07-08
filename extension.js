@@ -43,6 +43,8 @@ function activate(context) {
             var path = vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.uri.fsPath;
             var mirror = vscode.workspace.getConfiguration('TortoiseSVN').get('mirrorRepository').toString();
 
+
+
             if (!mirror) {
                 vscode.window.showWarningMessage('Mirror repository is not defined');
                 return;
@@ -182,9 +184,23 @@ var UriInfo = (function () {
                 actions.forEach(function (action) {
                     quickPickItems.push({
                         label: '(mirror) svn ' + action,
-                        description: path.join(mirror, _this.path.substring(firstSep)),
-                        path: path.join(mirror, _this.path.substring(firstSep)),
+                        description: mirror + _this.path.substring(firstSep),
+                        path: mirror +  _this.path.substring(firstSep),
                         action: action
+                    });
+                });
+            }
+
+            var mirrors = vscode.workspace.getConfiguration('TortoiseSVN').get('mirrorRepositorys');
+            if (Object.prototype.toString.call(mirrors) === '[object Array]' && mirrors.length > 0) {
+                mirrors.forEach(function (mirror) {
+                    mirror.actions.forEach(function (action) {
+                        quickPickItems.push({
+                            label: '(' + mirror.name + ') svn ' + action,
+                            description: mirror.path + _this.path.substring(firstSep),
+                            path: mirror.path + _this.path.substring(firstSep),
+                            action: action
+                        });
                     });
                 });
             }

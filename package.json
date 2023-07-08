@@ -217,6 +217,13 @@
 					"type": "string",
 					"default": "",
 					"description": "Add a mirror repository path or drive (optional)"
+				},
+				"TortoiseSVN.mirrorRepositorys": {
+					"type": "array",
+					"default": [
+
+					],
+					"description":"Add one or more mirror repository path in the JSON {name:stringName, path:stringPath, actions:[update,commit,revert,cleanup,log,add,blame,diff,lock,unlock]}"
 				}
 			}
 		},
